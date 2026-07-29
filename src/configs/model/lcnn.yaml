@@ -1,0 +1,6 @@
+_target_: src.model.LightCNN
+nfft: 512
+hop: 160
+win: 400
+ncls: 2
+drop: 0.5

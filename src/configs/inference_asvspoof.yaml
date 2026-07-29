@@ -1,0 +1,16 @@
+defaults:
+  - model: lcnn
+  - metrics: asvspoof
+  - datasets: asvspoof_eval
+  - dataloader: asvspoof
+  - transforms: asvspoof
+  - _self_
+
+inferencer:
+  device_tensors: ["data_object", "labels"]
+  device: auto
+  save_path: "asvspoof_eval"
+  seed: 1
+  from_pretrained: "saved/lcnn_stft_ce/best.pth"
+  save_scores_csv: true
+  score_filename: "m1bik.csv"

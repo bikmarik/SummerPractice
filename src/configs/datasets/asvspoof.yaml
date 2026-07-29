@@ -1,0 +1,15 @@
+train:
+  _target_: src.datasets.ASVspoofDataset
+  root: ${oc.env:ASVSPOOF_ROOT,data/asvspoof}
+  proto: ${oc.env:ASVSPOOF_ROOT,data/asvspoof}/LA/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.train.trn.txt
+  split: train
+  maxsec: 4.0
+  shuffle_index: true
+  instance_transforms: ${transforms.instance_transforms.train}
+val:
+  _target_: src.datasets.ASVspoofDataset
+  root: ${oc.env:ASVSPOOF_ROOT,data/asvspoof}
+  proto: ${oc.env:ASVSPOOF_ROOT,data/asvspoof}/LA/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.dev.trl.txt
+  split: dev
+  maxsec: 4.0
+  instance_transforms: ${transforms.instance_transforms.inference}

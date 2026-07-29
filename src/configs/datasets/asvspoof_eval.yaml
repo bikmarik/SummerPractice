@@ -1,0 +1,7 @@
+eval:
+  _target_: src.datasets.ASVspoofDataset
+  root: ${oc.env:ASVSPOOF_ROOT,data/asvspoof}
+  proto: protocols/ASVspoof2019.LA.cm.eval.trl.txt
+  split: eval
+  maxsec: 4.0
+  instance_transforms: ${transforms.instance_transforms.inference}

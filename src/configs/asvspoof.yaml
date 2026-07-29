@@ -1,0 +1,33 @@
+defaults:
+  - model: lcnn
+  - writer: wandb_asvspoof
+  - metrics: asvspoof
+  - datasets: asvspoof
+  - dataloader: asvspoof
+  - transforms: asvspoof
+  - _self_
+
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 3e-4
+  weight_decay: 1e-4
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  gamma: 0.95
+  step_size: ${trainer.epoch_len}
+loss_function:
+  _target_: src.loss.CrossEntropyCM
+trainer:
+  log_step: 50
+  n_epochs: 20
+  epoch_len: 1000
+  device_tensors: ["data_object", "labels"]
+  resume_from: null
+  device: auto
+  override: False
+  monitor: "min val_EER"
+  save_period: 5
+  early_stop: 10
+  save_dir: "saved"
+  seed: 1
+  max_grad_norm: 5.0
